@@ -4,6 +4,9 @@ target
 *.iml
 log
 gdriveGKislin
+test
 
 
 
+ru/
+test/
