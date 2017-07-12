@@ -35,14 +35,15 @@ public class UserMealsUtil {
     }
 
     public static List<UserMealWithExceed> getWithExceed(List<UserMeal> mealList, int caloriesPerDay) {
-        Map<LocalDate, Integer> map = new HashMap<>();
 
-        for (UserMeal m : mealList) {
-            map.merge(m.getDateTime().toLocalDate(), m.getCalories(), (v1, v2) -> v1 + v2);
-        }
+        Map<LocalDate, Integer> map = mealList.stream()
+                .collect(Collectors.toMap(                  //создаётся Map.merge(LocalDate, calories, v1 + v2);
+                        m -> m.getDateTime().toLocalDate(),
+                        m -> m.getCalories(),
+                        (v1, v2) -> v1 + v2));
 
         return mealList.stream()
-                .map(m -> new UserMealWithExceed(m.getDateTime(), m.getDescription(), m.getCalories(), map.containsKey(m.getDateTime().toLocalDate()) && map.get(m.getDateTime().toLocalDate()) > caloriesPerDay))
+                .map(m -> new UserMealWithExceed(m.getDateTime(), m.getDescription(), m.getCalories(), map.get(m.getDateTime().toLocalDate()) > caloriesPerDay))
                 .collect(Collectors.toList());
     }
 }
