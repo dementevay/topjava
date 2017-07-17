@@ -1,3 +1,4 @@
+.gitignore
 .idea
 out
 target
@@ -5,8 +6,6 @@ target
 log
 gdriveGKislin
 test
-
-
-
+*.patch
 ru/
 test/
