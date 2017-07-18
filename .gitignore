@@ -1,11 +1,7 @@
-.gitignore
+gdriveGKislin
 .idea
 out
 target
 *.iml
 log
-gdriveGKislin
-test
 *.patch
-ru/
-test/
